@@ -1,0 +1,57 @@
+# ADS Experiment 4
+#Explore data visualization techniques on the Titanic Survival dataset
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load the Titanic dataset into a Pandas DataFrame
+train_df = sns.load_dataset('titanic')
+train_df.head()
+
+#                                     	HISTOGRAM
+# Create a histogram of the 'Age' column in the 'train_df' DataFrame
+sns.histplot(data=train_df, x="age", bins=20)
+# Set the title and axis labels
+plt.title("Distribution of Passengers' Ages")
+plt.xlabel("Age")
+plt.ylabel("Count")
+plt.show()
+
+
+#                               		DENSITY CHART
+# Create the density plot
+sns.kdeplot(train_df['age'], shade=True)
+# Set the axis labels and title
+plt.xlabel('Age')
+plt.ylabel('Density')
+plt.title('Distribution of Age')
+plt.show()
+
+
+
+#                                  		SCATTERPLOT 
+# Create a scatter plot of 'Age' vs. 'Fare' for the 'train_df' DataFrame
+plt.scatter(train_df['age'], train_df['fare'])
+
+# Set the title and axis labels
+plt.title('Age vs. Fare')
+plt.xlabel('Age')
+plt.ylabel('Fare')
+
+# Show the plot
+plt.show()
+
+
+#                                   	BUBBLE CHART
+# Extract the data for the scatter plot
+x = train_df['age']
+y = train_df['fare']
+ # map Survived to bubble size (0: 50, 1: 150)
+sizes = train_df['survived'].map({0: 50, 1: 150})
+# Create the scatter plot with bubble sizes
+plt.scatter(x, y, s=sizes, alpha=0.5)
+# Set the axis labels and title
+plt.xlabel('Age')
+plt.ylabel('Fare')
+plt.title('Age, Fare, and Survival')
+plt.show()
